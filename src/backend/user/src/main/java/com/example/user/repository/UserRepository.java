@@ -5,5 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
+    boolean existsByUsername(String username);
 
+    boolean existsByEmail(String email);
+
+    boolean existsByPhone(String phone);
+
+    User findUserByUsername(String username);
 }
