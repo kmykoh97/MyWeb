@@ -35,33 +35,31 @@ public class UserController implements UserControllerInterface{
 
     public long signin(@RequestParam String username, @RequestParam String password) {
         if(!userRepository.existsByUsername(username)) {
-            return Long.valueOf(0);
+            return 0;
         }
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         User u = userRepository.findUserByUsername(username);
 
         if (encoder.matches(password, u.getPassword())) {
-            long user_id = u.getId();
-            return user_id;
+            return u.getId();
         }
 
-        return Long.valueOf(0);
+        return 0;
     }
 
     public String changePassword(@RequestParam long id, @RequestParam String oldpassword,
-                          @RequestParam String newpassword) {
-        return "test";
-//        User u = userRepository.findUserById(id);
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        if (!encoder.matches(oldPassword, u.getPassword())) {
-//            return "Password not match! Not successful!";
-//        }
-//
-//        u.setPassword(newPassword);
-//        userRepository.save(u);
-//
-//        return "success";
+                                 @RequestParam String newpassword) {
+        User u = userRepository.findUserById(id);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (!encoder.matches(oldpassword, u.getPassword())) {
+            return "Password not match!";
+        }
+
+        u.setPassword(newpassword);
+        userRepository.save(u);
+
+        return "success";
     }
 
 }
