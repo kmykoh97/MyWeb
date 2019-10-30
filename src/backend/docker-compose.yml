@@ -1,0 +1,12 @@
+version: 3
+services:
+  db:
+    image: mysql:8.0.18
+    network: host
+  user-service:
+    build: ./user
+    ports:
+      - 30000:30000
+    depends_on:
+      - db
+    network: host
