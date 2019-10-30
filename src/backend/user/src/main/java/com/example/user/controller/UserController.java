@@ -4,6 +4,7 @@ import com.example.user.entity.User;
 import com.example.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +31,7 @@ public class UserController implements UserControllerInterface{
         return "register success";
     }
 
+    @CrossOrigin
     public long signin(@RequestParam String username, @RequestParam String password) {
         if(!userRepository.existsByUsername(username)) {
             return 0;

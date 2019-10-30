@@ -15,11 +15,11 @@ public interface UserControllerInterface {
 
     // Upon successful signin, return user_id to frontend. Frontend should store this user_id to be used on other services
     // returns 0 or exception error on failed signin
-    @RequestMapping("/un/signin")
+    @RequestMapping("/user/signin")
     @CrossOrigin
     long signin(@RequestParam String username, @RequestParam String password);
 
-    @RequestMapping("/users/changepassword")
+    @RequestMapping("/user/changepassword")
     String changePassword(@RequestParam long id, @RequestParam String oldpassword,
                           @RequestParam String newpassword);
 }
