@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import createBrowserHistory from 'history/createBrowserHistory'
 import * as serviceWorker from './serviceWorker';
-import { Router, Route, Switch, Link } from 'react-router-dom';
+import { Router, Route, Switch, Link } from 'react-router';
 
 import Login from './components/auth/login'
 import Signup from './components/auth/signup'
@@ -23,9 +23,10 @@ ReactDOM.render((
         <div>
             <App />
             <Switch>
-                <Route exact path={"/"} component={Login}/>
+                {/* <Route exact path={"/"} component={Mainpage}/> */}
                 <Route exact path={"/login"} component={Login}/>
                 <Route exact path={"/signup"} component={Signup}/>
+                <Route exact path={"/mainpage"} component={Mainpage}/>
             </Switch>
         </div>
     </Router>), document.getElementById('root')
