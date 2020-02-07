@@ -6,20 +6,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface UserControllerInterface {
 
-    // Alert!!!
-    // gender: 0 for male, 1 for female
+    // Upon successful signup, return 0 to frontend. Return 1 for duplicated username
     @RequestMapping("/user/signup")
     @CrossOrigin
-    String signup(@RequestParam String username, @RequestParam String password,
-                  @RequestParam String email, @RequestParam String phone);
+    int signup(@RequestParam String username, @RequestParam String password);
 
     // Upon successful signin, return user_id to frontend. Frontend should store this user_id to be used on other services
     // returns 0 or exception error on failed signin
     @RequestMapping("/user/signin")
     @CrossOrigin
-    long signin(@RequestParam String username, @RequestParam String password);
+    int signin(@RequestParam String username, @RequestParam String password);
 
+    // Upon successful password change, return 0 to frontend. Return 1 otherwise
     @RequestMapping("/user/changepassword")
-    String changePassword(@RequestParam long id, @RequestParam String oldpassword,
-                          @RequestParam String newpassword);
+    @CrossOrigin
+    int changePassword(@RequestParam int id, @RequestParam String oldpassword, @RequestParam String newpassword);
 }

@@ -4,7 +4,6 @@ import com.example.user.entity.User;
 import com.example.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,25 +13,21 @@ public class UserController implements UserControllerInterface{
     @Autowired
     private UserRepository userRepository;
 
-    public String signup(@RequestParam String username, @RequestParam String password,
-                         @RequestParam String email, @RequestParam String phone) {
-        if (userRepository.existsByEmail(email) || userRepository.existsByPhone(phone) || userRepository.existsByUsername(username)) {
-            return "username, email or phone already exist!";
+    public int signup(@RequestParam String username, @RequestParam String password) {
+        if (userRepository.existsByUsername(username)) {
+            return 1;
         }
 
         User u = new User();
         u.setPassword(password);
         u.setUsername(username);
-        u.setEmail(email);
-        u.setPhone(phone);
 
         userRepository.save(u);
 
-        return "register success";
+        return 0;
     }
 
-    @CrossOrigin
-    public long signin(@RequestParam String username, @RequestParam String password) {
+    public int signin(@RequestParam String username, @RequestParam String password) {
         if(!userRepository.existsByUsername(username)) {
             return 0;
         }
@@ -47,18 +42,18 @@ public class UserController implements UserControllerInterface{
         return 0;
     }
 
-    public String changePassword(@RequestParam long id, @RequestParam String oldpassword,
-                                 @RequestParam String newpassword) {
+    public int changePassword(@RequestParam int id, @RequestParam String oldpassword,
+                              @RequestParam String newpassword) {
         User u = userRepository.findUserById(id);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (!encoder.matches(oldpassword, u.getPassword())) {
-            return "Password not match!";
+            return 1;
         }
 
         u.setPassword(newpassword);
         userRepository.save(u);
 
-        return "success";
+        return 0;
     }
 
 }

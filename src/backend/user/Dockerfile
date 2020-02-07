@@ -8,7 +8,7 @@ LABEL maintainer="kmykoh97@gmail.com"
 VOLUME /tmp
 
 # Make port available to the world outside this container
-EXPOSE 30000
+EXPOSE 9000
 
 # The application's jar file
 ARG JAR_FILE=target/user-0.0.1-SNAPSHOT.jar
