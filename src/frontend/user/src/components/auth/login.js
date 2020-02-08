@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {withRouter} from "react-router";
+import { withRouter } from "react-router";
 import PropTypes from 'prop-types'
-import {FormControl, Button} from 'react-bootstrap';
+import { FormControl, Button } from 'react-bootstrap';
 
 import $ from 'jquery';
-import {isLogin, setLogin, userid, setuserid} from "../../index";
+import { isLogin, setLogin, userid, setuserid } from "../../index";
 
 
 
@@ -16,6 +16,7 @@ class Login extends Component {
 
     constructor() {
       super();
+
       this.state = {
         username: '',
         password: '',

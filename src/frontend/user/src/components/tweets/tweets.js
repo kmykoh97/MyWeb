@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { TweetBody } from './tweet'
-
+import Createtweet from './createtweet'
+import './tweets.css';
 import $ from 'jquery';
+
+
 
 var firecount = 1;
 var cont = true;
@@ -9,45 +12,47 @@ var cont = true;
 class Tweets extends Component {
 
     constructor(props) {
-      super(props)
-      this.state = {
-        users: []
-      };
+        super(props)
 
-      this.getUser = this.getUser.bind(this)
+        this.state = {
+          users: []
+        };
+
+        this.getUser = this.getUser.bind(this)
     }
   
     componentWillMount() {
-      this.getUser()
+        this.getUser()
     }
   
     getUser() {
         $.ajax({ url: "http://localhost:9001/comment/gettweet",
-        data: {count:firecount},
-        context: document.body,
-        crossDomain: true,
-        async: false,
-        type: "post",
-        success: data => {
-            // console.log(data);
-            if (data == "N/A") {
-                cont = false;
-                return;
-            }
+            data: {count:firecount},
+            context: document.body,
+            crossDomain: true,
+            async: false,
+            type: "post",
+            success: data => {
+                // console.log(data);
+                if (data == "N/A") {
+                    cont = false;
+                    return;
+                }
 
-            this.setState(previousState => ({
-                users: [
-                    ...previousState.users,
-                    {
-                        name: "test",
-                        // image: data,
-                        tweet: data,
-                    },
-                    // ...this.state.users,
-                ]
-                // users: this.state.users.concat({name: "test", tweet: data})
-            }));
-        }});
+                this.setState(previousState => ({
+                    users: [
+                        ...previousState.users,
+                        {
+                            name: "test",
+                            // image: data,
+                            tweet: data,
+                        },
+                        // ...this.state.users,
+                    ]
+                    // users: this.state.users.concat({name: "test", tweet: data})
+                }));
+            }
+        });
 
         if (cont) {
             console.log(this.state.users.name);
@@ -59,10 +64,11 @@ class Tweets extends Component {
     render() {
       return (
         <div className="main-body">
+            <Createtweet/>
           {[...this.state.users].map((user, index) => {
             let name = `${user.name}`
             let handle = `@${user.name}`
-            // let image = user.image
+            let image = "https://image.shutterstock.com/image-photo/beautiful-water-drop-on-dandelion-260nw-789676552.jpg"
             let tweet = user.tweet
             // console.log(image)
             return(
@@ -71,13 +77,15 @@ class Tweets extends Component {
                     name={name}
                     handle={handle}
                     tweet={tweet}
-                    // image={image} 
+                    image={image} 
                 />
             )
           })} 
         </div>
       );
     }
-  }
-  
-  export default Tweets;
+}
+
+
+
+export default Tweets;
