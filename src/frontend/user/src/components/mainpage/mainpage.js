@@ -11,6 +11,8 @@ class Mainpage extends Component {
             <div>
             <h1>Welcome to my website</h1>
             <Link to={"/login"}>Login here</Link>
+            <p></p>
+            <Link to={"/signup"}>Signup here</Link>
             </div>
         );
     }

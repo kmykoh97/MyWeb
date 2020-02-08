@@ -9,24 +9,30 @@ import { Router, Route, Switch, Link } from 'react-router';
 import Login from './components/auth/login'
 import Signup from './components/auth/signup'
 import Mainpage from './components/mainpage/mainpage'
+import Tweets from './components/tweets/tweets'
 
 let history = createBrowserHistory();
 let isLogin = false;
+let userid = 0;
 
 let setLogin = function (value) {
     isLogin = value;
 };
 
+let setuserid = function (value) {
+    userid = value;
+}
 
 ReactDOM.render((
     <Router history={history}>
         <div>
             <App />
             <Switch>
-                <Route exact path={"/"} component={Mainpage}/>
+                <Route exact path={"/"} component={Tweets}/>
                 <Route exact path={"/login"} component={Login}/>
                 <Route exact path={"/signup"} component={Signup}/>
                 <Route exact path={"/mainpage"} component={Mainpage}/>
+                <Route exact path={"/tweets"} component={Tweets}/>
             </Switch>
         </div>
     </Router>), document.getElementById('root')
@@ -37,4 +43,4 @@ ReactDOM.render((
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-export {isLogin, setLogin};
+export {isLogin, setLogin, userid, setuserid};

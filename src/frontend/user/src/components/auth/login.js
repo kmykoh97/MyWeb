@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {FormControl, Button} from 'react-bootstrap';
 
 import $ from 'jquery';
-import {isLogin, setLogin} from "../../index";
+import {isLogin, setLogin, userid, setuserid} from "../../index";
 
 
 
@@ -34,7 +34,7 @@ class Login extends Component {
         let psw = this.state.password;
         let result;
 
-        $.ajax({ url: "http://localhost:30000/user/signin",
+        $.ajax({ url: "http://localhost:9000/user/signin",
             data: {username:usn, password:psw},
             context: document.body,
             crossDomain: true,
@@ -43,14 +43,15 @@ class Login extends Component {
             success: function(data) {
                 if (data > 0)
                 {
-                    setLogin(true)
+                    setLogin(true);
+                    setuserid(data);
                 }
             }});
 
         if (isLogin) {
-          this.context.router.history.push("/mainpage");
+          this.context.router.history.push("/tweets");
         } else {
-          alert("Invalid username or password.");
+          alert("Invalid username or password");
         }
 
     }

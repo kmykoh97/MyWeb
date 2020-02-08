@@ -18,4 +18,8 @@ public interface TweetsControllerInterface {
     @CrossOrigin
     String gettweet(@RequestParam int count);
 
+    @RequestMapping("/test")
+    @CrossOrigin
+    String tst();
+
 }
