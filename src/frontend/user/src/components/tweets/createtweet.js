@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 import $ from 'jquery';
 import { userid } from "../../index";
 
-
-
 class Createtweet extends Component {
 
     static contextTypes = {
@@ -32,6 +30,18 @@ class Createtweet extends Component {
     connectTweet() {
         let uid = userid;
         let tweettext = this.state.tweet;
+
+        // do word length check
+        if (tweettext.length > 300 || tweettext.length <= 0) {
+            alert("text length must be within 0 to 300");
+            return;
+        }
+
+        // do user 0 check
+        if (uid <= 0) {
+            alert("Please Sign In before tweeting");
+            return;
+        }
     
         $.ajax({ url: "http://localhost:9001/comment/createtweet",
             data: {uid:uid, tweettext:tweettext},
@@ -48,16 +58,14 @@ class Createtweet extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="createtweetbody">
                 <form>
-                    <input type="text" placeholder="Insert your tweet here!" data-test="tweet" value={this.state.tweet} onChange={this.handleTweetChange} />
-                    <input type="submit" value="TWEET!" data-test="submit" onClick={this.connectTweet}/>
+                    <input className="tweetinput" type="text" placeholder="Insert your tweet here!" data-test="tweet" value={this.state.tweet} onChange={this.handleTweetChange} />
+                    <input className="tweetsubmit" type="submit" value="TWEET!" data-test="submit" onClick={this.connectTweet}/>
                 </form>
             </div>
         )
     }
 }
-
-
 
 export default withRouter(Createtweet);

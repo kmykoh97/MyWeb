@@ -39,9 +39,4 @@ public class TweetsController {
         return t.getTweet();
     }
 
-    @RequestMapping("/test")
-    public String tst() {
-        return "test";
-    }
-
 }

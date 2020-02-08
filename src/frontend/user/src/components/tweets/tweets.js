@@ -4,8 +4,6 @@ import Createtweet from './createtweet'
 import './tweets.css';
 import $ from 'jquery';
 
-
-
 var firecount = 1;
 var cont = true;
 
@@ -33,7 +31,6 @@ class Tweets extends Component {
             async: false,
             type: "post",
             success: data => {
-                // console.log(data);
                 if (data == "N/A") {
                     cont = false;
                     return;
@@ -44,12 +41,9 @@ class Tweets extends Component {
                         ...previousState.users,
                         {
                             name: "test",
-                            // image: data,
                             tweet: data,
                         },
-                        // ...this.state.users,
                     ]
-                    // users: this.state.users.concat({name: "test", tweet: data})
                 }));
             }
         });
@@ -62,30 +56,27 @@ class Tweets extends Component {
     }
   
     render() {
-      return (
-        <div className="main-body">
-            <Createtweet/>
-          {[...this.state.users].map((user, index) => {
-            let name = `${user.name}`
-            let handle = `@${user.name}`
-            let image = "https://image.shutterstock.com/image-photo/beautiful-water-drop-on-dandelion-260nw-789676552.jpg"
-            let tweet = user.tweet
-            // console.log(image)
-            return(
-                <TweetBody 
-                    key={index}
-                    name={name}
-                    handle={handle}
-                    tweet={tweet}
-                    image={image} 
-                />
-            )
-          })} 
-        </div>
-      );
+        return (
+            <div className="main-body">
+                <Createtweet/>
+                {[...this.state.users].map((user, index) => {
+                let name = `${user.name}`
+                let handle = `@${user.name}`
+                let image = "https://i.ibb.co/f058C6m/We-Chat-Image-20200208165927.jpg"
+                let tweet = user.tweet
+                return (
+                    <TweetBody 
+                        key={index}
+                        name={name}
+                        handle={handle}
+                        tweet={tweet}
+                        image={image} 
+                    />
+                )
+                })}
+            </div>
+        );
     }
 }
-
-
 
 export default Tweets;

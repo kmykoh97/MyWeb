@@ -4,6 +4,8 @@ import com.example.user.entity.User;
 import com.example.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +15,8 @@ public class UserController implements UserControllerInterface{
     @Autowired
     private UserRepository userRepository;
 
+    @RequestMapping("/user/signup")
+    @CrossOrigin
     public int signup(@RequestParam String username, @RequestParam String password) {
         if (userRepository.existsByUsername(username)) {
             return 1;
@@ -27,6 +31,8 @@ public class UserController implements UserControllerInterface{
         return 0;
     }
 
+    @RequestMapping("/user/signin")
+    @CrossOrigin
     public int signin(@RequestParam String username, @RequestParam String password) {
         if(!userRepository.existsByUsername(username)) {
             return 0;
@@ -42,6 +48,8 @@ public class UserController implements UserControllerInterface{
         return 0;
     }
 
+    @RequestMapping("/user/changepassword")
+    @CrossOrigin
     public int changePassword(@RequestParam int id, @RequestParam String oldpassword,
                               @RequestParam String newpassword) {
         User u = userRepository.findUserById(id);
