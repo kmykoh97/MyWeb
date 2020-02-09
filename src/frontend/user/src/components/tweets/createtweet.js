@@ -43,7 +43,7 @@ class Createtweet extends Component {
             return;
         }
     
-        $.ajax({ url: "http://localhost:9001/comment/createtweet",
+        $.ajax({ url: "http://comment:9001/comment/createtweet",
             data: {uid:uid, tweettext:tweettext},
             context: document.body,
             crossDomain: true,

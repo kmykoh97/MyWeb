@@ -36,7 +36,7 @@ class Login extends Component {
         let usn = this.state.username;
         let psw = this.state.password;
 
-        $.ajax({ url: "http://localhost:9000/user/signin",
+        $.ajax({ url: "http://user:9000/user/signin",
             data: {username:usn, password:psw},
             context: document.body,
             crossDomain: true,

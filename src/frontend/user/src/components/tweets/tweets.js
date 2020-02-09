@@ -24,7 +24,7 @@ class Tweets extends Component {
     }
   
     getUser() {
-        $.ajax({ url: "http://localhost:9001/comment/gettweet",
+        $.ajax({ url: "http://comment:9001/comment/gettweet",
             data: {count:firecount},
             context: document.body,
             crossDomain: true,

@@ -29,7 +29,7 @@ class Signup extends Component {
         let psw = this.state.password;
         var temp = false;
 
-        $.ajax({ url: "http://localhost:9000/user/signup",
+        $.ajax({ url: "http://user:9000/user/signup",
             data: {username:usn, password:psw},
             context: document.body,
             crossDomain: true,
