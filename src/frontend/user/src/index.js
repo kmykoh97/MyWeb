@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import createBrowserHistory from 'history/createBrowserHistory'
 import * as serviceWorker from './serviceWorker';
-import { Router, Route, Switch, Link } from 'react-router';
+import { Router, Route, Switch } from 'react-router';
 import Login from './components/auth/login'
 import Signup from './components/auth/signup'
 import Mainpage from './components/mainpage/mainpage'

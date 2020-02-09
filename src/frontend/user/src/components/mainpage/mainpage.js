@@ -9,7 +9,7 @@ class Mainpage extends Component {
         return (
             <div>
                 <h1>Welcome to Mini Twitter</h1>
-                <img className="mainpageimg" src="https://i.ibb.co/f058C6m/We-Chat-Image-20200208165927.jpg" border="0" />
+                <img className="mainpageimg" alt="" src="https://i.ibb.co/f058C6m/We-Chat-Image-20200208165927.jpg" border="0" />
                 <p></p>
                 <button className="mainpagebtn"><Link to={"/login"}>Login here</Link></button>
                 <p></p>

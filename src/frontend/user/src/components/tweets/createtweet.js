@@ -50,7 +50,7 @@ class Createtweet extends Component {
             async: false,
             type: "post",
             success: function(data) {
-                if (data == 0) {
+                if (data === 0) {
                     window.location.reload(false);
                 }
             }});

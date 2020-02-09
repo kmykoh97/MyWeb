@@ -31,7 +31,7 @@ class Tweets extends Component {
             async: false,
             type: "post",
             success: data => {
-                if (data == "N/A") {
+                if (data === "N/A") {
                     cont = false;
                     return;
                 }

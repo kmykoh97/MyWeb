@@ -36,9 +36,9 @@ class Signup extends Component {
             async: false,
             type: "post",
             success: function(data) {
-                if (data == 0) {
+                if (data === 0) {
                     temp = true;
-                } else if (data == 1) {
+                } else if (data === 1) {
                     alert("duplicated username");
                 }
             }
